@@ -12,8 +12,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Alert, AlertTitle } from "@/components/ui/alert";
 import {Form, FormField, FormControl, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import {FaGithub, FaGoogle} from "react-icons/fa";
 
 const formSchema = z.object({
     name: z.string().min(1, {message: "Name is required"}),
@@ -49,12 +50,34 @@ export const SignUpView = () => {
             {
                 name: data.name,
                 email: data.email,
-                Password: data.password,
+                password: data.password,
+                callbackURL: "/",
             },
             {
                 onSuccess: () => {
                     setPending(false);
                     router.push("/");
+                },
+                onError: ({ error }) => { 
+                    setPending(false);
+                    setError(error.message)
+                },
+            }
+        );
+    };
+
+    const onSocial = (provider: "github" | "google") => {
+        setError(null);
+        setPending(true);
+
+        authClient.signIn.social(
+            {
+                provider: provider,
+                callbackURL: "/",
+            },
+            {
+                onSuccess: () => {
+                    setPending(false);
                 },
                 onError: ({ error }) => { 
                     setPending(false);
@@ -161,7 +184,7 @@ export const SignUpView = () => {
                                     <AlertTitle>{error}</AlertTitle>
                                 </Alert>
                             )}
-                            <Button disabled={pending} type="submit" className="w-full">
+                            <Button disabled={pending} type="submit" className="w-full cursor-pointer">
                                 Sign up
                             </Button>
                             <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
@@ -170,12 +193,12 @@ export const SignUpView = () => {
                                 </span>
                             </div>
                             <div className="grid grid-cols-2 gap-4">
-                                <button disabled={pending} variant="outline" type="button" className="w-full border rounded-md">
-                                    Google
-                                </button>
-                                <button disabled={pending} variant="outline" type="button" className="w-full border rounded-md">
-                                    Github
-                                </button>
+                                <Button disabled={pending} onClick={() => onSocial("google")} type="button" className="w-full cursor-pointer">
+                                    <FaGoogle/>
+                                </Button>
+                                <Button disabled={pending} onClick={() => onSocial("github")} type="button" className="w-full cursor-pointer">
+                                    <FaGithub/>
+                                </Button>
                             </div>
                             <div className="text-center text-sm">
                                 Already have an account?{" "} <Link href="/sign-in" className="underline underline-offset-4">Sign in</Link>
