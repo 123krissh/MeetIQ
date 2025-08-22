@@ -101,7 +101,7 @@ export const DashboardSidebar = () => {
                         <SidebarMenu>
                             {secondSection.map((item) => (
                                 <SidebarMenuButton key={item.href}>
-                                    <SidebarMenuButton 
+                                    <SidebarMenuButton
                                     asChild
                                     className={cn(
                                         "h-10 hover:bg-liner-to-r/oklch border border-transparent hover:border-[#5d6b68]/10 from-sidebar-accent from-5% via-30% via-sidebar/50 to-sidebar/50",
