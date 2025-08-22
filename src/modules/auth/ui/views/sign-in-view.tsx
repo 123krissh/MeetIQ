@@ -163,6 +163,7 @@ export const SignInView = () => {
                   >
                     <FaGoogle />
                   </Button>
+
                   <Button
                     disabled={pending}
                     onClick={() => onSocial("github")}
