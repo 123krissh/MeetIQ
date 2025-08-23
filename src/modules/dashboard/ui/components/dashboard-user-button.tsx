@@ -128,7 +128,7 @@ export const DashboardUserButton = () => {
                 />
 
              )}
-             <div className="flex flex-col gap-0.5 text-left overflow-hidden flex-1 min-0">
+             <div className="flex flex-col gap-0.5 text-left flex-1 min-0">
                 <p className = "text-xs truncate w-full">
                     {data.user.name}
                 </p>
