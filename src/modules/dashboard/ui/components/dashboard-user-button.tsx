@@ -88,8 +88,6 @@ export const DashboardUserButton = () => {
 
             </DropdownMenuContent>
 
-
-            User Button
         </DropdownMenu>
     );
 };
