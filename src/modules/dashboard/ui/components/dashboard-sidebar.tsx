@@ -130,7 +130,7 @@ export const DashboardSidebar = () => {
 
             </SidebarContent>
             <SidebarFooter className = "tect-white">
-                <DashboardUserButton/>
+            <DashboardUserButton/>
 
             </SidebarFooter>
         </Sidebar>
