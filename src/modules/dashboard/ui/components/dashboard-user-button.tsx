@@ -61,7 +61,7 @@ export const DashboardUserButton = () => {
                 <p className = "text-xs truncate w-full">
                     {data.user.name}
                 </p>
-                <p>
+                <p className="text-xs">
                     {data.user.email}
                 </p>
 
