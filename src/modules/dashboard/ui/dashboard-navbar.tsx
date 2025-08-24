@@ -41,6 +41,6 @@ export const DashboardNavbar = () => {
             </Button>
         </nav>
         </>
-    );
+    );  
     
 };
