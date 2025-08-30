@@ -22,23 +22,13 @@ const Page = async ({ params }: Props) => {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <Suspense
-        fallback={
-          <p>
-            <AgentIdViewLoading />
-          </p>
-        }
-      >
-        <ErrorBoundary
-          fallback={
-            <p>
-              <AgentIdViewError />
-            </p>
-          }
-        >
+      <Suspense fallback={<AgentIdViewLoading />}>
+        <ErrorBoundary fallback={<AgentIdViewError />}>
           <AgentIdView agentId={agentId}></AgentIdView>
         </ErrorBoundary>
       </Suspense>
     </HydrationBoundary>
   );
 };
+
+export default Page;
