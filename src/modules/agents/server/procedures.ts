@@ -3,9 +3,8 @@ import { agents } from "@/db/schema"
 import { createTRPCRouter, protectedProcedure } from "@/trpc/init";
 import { agentInsertSchema, agentsUpdateSchema } from "../schemas";
 import { z } from "zod";
-import { and, eq, getTableColumns, sql } from "drizzle-orm";
+import { and, eq, count, desc, getTableColumns, ilike, sql } from "drizzle-orm";
 import { TRPCError } from "@trpc/server";
-import { and, count, desc, eq, getTableColumns, ilike, sql } from "drizzle-orm";
 import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE, MAX_PAGE_SIZE, MIN_PAGE_SIZE } from "@/constants";
 import { Agent } from "http";
 
