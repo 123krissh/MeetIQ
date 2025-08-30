@@ -6,8 +6,6 @@ import { z } from "zod";
 import { and, eq, count, desc, getTableColumns, ilike, sql } from "drizzle-orm";
 import { TRPCError } from "@trpc/server";
 import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE, MAX_PAGE_SIZE, MIN_PAGE_SIZE } from "@/constants";
-import { Agent } from "http";
-import { user } from '../../../db/schema';
 
 export const agentsRouter = createTRPCRouter({
 
