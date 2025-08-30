@@ -6,9 +6,6 @@ import { z } from "zod";
 import { and, eq, count, desc, getTableColumns, ilike, sql } from "drizzle-orm";
 import { TRPCError } from "@trpc/server";
 import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE, MAX_PAGE_SIZE, MIN_PAGE_SIZE } from "@/constants";
-import { Agent } from "http";
-import { user } from '../../../db/schema';
-import { TRPCError } from "@trpc/server";
 
 export const agentsRouter = createTRPCRouter({
 
@@ -44,16 +41,6 @@ export const agentsRouter = createTRPCRouter({
         return removedAgent;
     }),
 
-    getOne: protectedProcedure.input(z.object({ id: z.string() })).query(async ({ input }) => {
-        const [exisitingAgent] = await db
-        .select({
-            // TODO: Change to actual count
-            meetingCount: sql<number>`5`,
-            ...getTableColumns(agents),
-        }) 
-        .from(agents)
-        .where(eq(agents.id, input.id))
-
     getOne: protectedProcedure
         .input(z.object({ id: z.string() }))
         .query(async ({ input, ctx }) => {
@@ -79,7 +66,6 @@ export const agentsRouter = createTRPCRouter({
         }),
 
     getMany: protectedProcedure
-
         .input(z.object({
             page: z.number().default(DEFAULT_PAGE),
             pageSize: z
@@ -139,6 +125,4 @@ export const agentsRouter = createTRPCRouter({
 
             return createdAgent;
         })
-
-
 })
