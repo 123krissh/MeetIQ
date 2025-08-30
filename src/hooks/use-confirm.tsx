@@ -30,15 +30,14 @@ export const useConfirm = (
         handleClose();
     };
 
-    const ConfirmationDialog = () => {
-        return (
+    const ConfirmationDialog = () => (
             <ResponsiveDialog
                 open={promise !== null}
                 onOpenChange={handleClose}
                 title={title}
                 description={description}
             >
-                <div className="pt-4 w-full flex flex-col flex-col-reverse gap-y-2 lg:flex-row gap-x-2 items-center justify-end">
+                <div className="pt-4 w-full flex flex-col-reverse gap-y-2 lg:flex-row gap-x-2 items-center justify-end">
                     <Button 
                        onClick={handleCancle}
                        variant="outline"
@@ -53,7 +52,6 @@ export const useConfirm = (
                 </div>
             </ResponsiveDialog>
         );
-    };
 
     return [ConfirmationDialog, confirm];
 };

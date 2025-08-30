@@ -37,7 +37,7 @@ export const AgentIdViewHeader = ({
   onRemove,
 }: Props) => {
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between m-2">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -65,12 +65,12 @@ export const AgentIdViewHeader = ({
             <MoreVerticalIcon />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          <DropdownMenuItem onClick={onEdit}>
+        <DropdownMenuContent align="end" className="bg-white p-2 gap-y-2 rounded-md border shadow-gray-400">
+          <DropdownMenuItem onClick={onEdit} className="flex items-center gap-x-1 cursor-pointer">
             <PencilIcon className="size-4 text-black"></PencilIcon>
             Edit
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={onRemove}>
+          <DropdownMenuItem onClick={onRemove} className="flex items-center gap-x-1 cursor-pointer">
             <TrashIcon className="size-4 text-black"></TrashIcon>
             Delete
           </DropdownMenuItem>

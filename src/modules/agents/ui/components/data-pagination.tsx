@@ -21,22 +21,20 @@ export const DataPagination = ( {
                 disabled={page ===1}
                 variant="outline"
                 size="sm"
-                onClick={() =>onPageChange(Math.max(1, page - 1))}
+                onClick={() =>onPageChange(Math.max(1, page-1))}
                 >
                     Previous
                 </Button>
                 <Button
-                disabled={page === totalPages || totalPages === 0}
+                disabled={page === totalPages || totalPages ===0}
                 variant="outline"
                 size="sm"
-                onClick={()=>onPageChange(Math.min(totalPages, page + 1))}
+                onClick={()=>onPageChange(Math.min(totalPages, page+1))}
                 >
                     Next
                 </Button>
             </div>
         </div>
     );
-  page: number;
-  totalPages: number;
-  onPageChange: (page: number) => void;
+
 };
