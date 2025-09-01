@@ -5,9 +5,38 @@ import { z } from "zod";
 import { and, eq, count, desc, getTableColumns, ilike } from "drizzle-orm";
 import { TRPCError } from "@trpc/server";
 import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE, MAX_PAGE_SIZE, MIN_PAGE_SIZE } from "@/constants";
+import { meetingsInsertSchema, meetingUpdateSchema } from "../schemas";
 
 export const meetingsRouter = createTRPCRouter({
+    update: protectedProcedure.input(meetingUpdateSchema).mutation(async ({ ctx, input }) => {
+        const [updatedMeeting] = await db.update(meetings).set(input).where(
+            and(
+                eq(meetings.id, input.id),
+                eq(meetings.userId, ctx.auth.user.id),
+            )
+        ).returning();
 
+        if (!updatedMeeting) {
+            throw new TRPCError({
+                code: "NOT_FOUND",
+                message: "Agent not found",
+            });
+        }
+        return updatedMeeting;
+    }),
+
+    create: protectedProcedure
+        .input(meetingsInsertSchema)
+        .mutation(async ({ input, ctx }) => {
+            const [createdMeeting] = await db
+                .insert(meetings)
+                .values({
+                    ...input, userId: ctx.auth.user.id,
+                })
+                .returning()
+            //TODO Create Stream call , Upsert Stream Users
+            return createdMeeting;
+        }),
     getOne: protectedProcedure
         .input(z.object({ id: z.string() }))
         .query(async ({ input, ctx }) => {
@@ -16,7 +45,7 @@ export const meetingsRouter = createTRPCRouter({
                     ...getTableColumns(meetings),
                 })
                 .from(meetings)
-                .where( 
+                .where(
                     and(
                         eq(meetings.id, input.id),
                         eq(meetings.userId, ctx.auth.user.id)
