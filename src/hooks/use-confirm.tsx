@@ -41,12 +41,12 @@ export const useConfirm = (
                     <Button 
                        onClick={handleCancle}
                        variant="outline"
-                       className="w-full lg-w-auto"
+                       className="w-full lg:w-auto"
                     >Cancel
                     </Button>
                     <Button 
                        onClick={handleConfirm}
-                       className="w-full lg-w-auto"
+                       className="w-full lg:w-auto"
                     >Confirm
                     </Button>
                 </div>
