@@ -6,7 +6,7 @@ import { MeetingGetMany } from "../../types";
 import { GeneratedAvatar } from "@/components/ui/generated-avatar";
 import { CircleCheckIcon,CircleXIcon,ClockArrowUpIcon,ClockFadingIcon,CornerDownRightIcon, LoaderIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { cn } from "../../../../../MeetIQ/src/lib/utils";
+import { cn } from "../../../../../src/lib/utils";
 import humanizeDuration from "humanize-duration";
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
