@@ -1,4 +1,5 @@
-"use-client";
+"use client";
+
 import { useTRPC } from "@/trpc/client";
 import { trpc } from "../../../../trpc/server";
 import {
