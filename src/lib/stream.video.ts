@@ -1,6 +1,7 @@
-// import { StreamClient } from './../../node_modules/@stream-io/node-sdk/src/StreamClient';
 import "server-only"
-import { StreamClient } from '@stream-io/node-sdk/';
+// import { StreamClient } from './../../node_modules/@stream-io/node-sdk/src/StreamClient';
+
+import { StreamClient } from '@stream-io/node-sdk';
 
 export const streamVideo = new StreamClient(
     process.env.NEXT_PUBLIC_STREAM_VIDEO_API_KEY!,
